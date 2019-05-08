@@ -16,16 +16,12 @@ module.exports = {
     {
       label: 'About me',
       path: '/pages/about'
-    },
-    {
-      label: 'Contact me',
-      path: '/pages/contacts'
     }
   ],
   author: {
     name: 'Emmanuel Sekyi',
     photo: '/photo.jpg',
-    bio: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+    bio: 'Machine learnist, Software Practitioner(web), Wine Evangelist',
     contacts: {
       email: 'emmanuelkwamesekyi@gmail.com',
       twitter: 'https://twitter.com/thesekyi',
