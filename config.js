@@ -10,11 +10,11 @@ module.exports = {
   googleAnalyticsId: 'UA-139872255-1',
   menu: [
     {
-      label: 'Articles',
+      label: 'Blog',
       path: '/'
     },
     {
-      label: 'About me',
+      label: 'About',
       path: '/pages/about'
     }
   ],
