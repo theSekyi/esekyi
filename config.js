@@ -24,8 +24,8 @@ module.exports = {
     bio: 'Machine learnist, Software Practitioner(web), Wine Evangelist',
     contacts: {
       email: 'emmanuelkwamesekyi@gmail.com',
-      twitter: 'https://twitter.com/thesekyi',
-      github: 'https://github.com/theSekyi',
+      twitter: 'thesekyi',
+      github: 'theSekyi',
     }
   }
 };
