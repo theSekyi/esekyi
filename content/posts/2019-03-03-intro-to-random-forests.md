@@ -1,9 +1,9 @@
 ---
-title: Random Forests
+title: Decision Trees
 date: "2019-03-03T23:46:37.121Z"
 template: "post"
 draft: false
-slug: "/posts/intro-to-random-forests/"
+slug: "/posts/decision-trees/"
 category: "Machine Learning"
 tags:
   - "ML"
