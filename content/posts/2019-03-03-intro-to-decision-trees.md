@@ -95,8 +95,12 @@ The figure above shows the steps our algorithm goes through to predict the class
 The first variable at the top is called the **root node(depth=0)**. At each node, we have a feature, gini, samples, value and class. Let’s take time to explain what each of these terms mean:\
 **feature** - this is a feature the algorithm splits on. We’ll explore how this is done in a bit. Our features include *fixed acidity*,*volatile acidity*,*citric acid*,*residual sugar*,*chlorides*,*free sulfur dioxide*,*total sulfur dioxide*,*density*,*pH*,*sulphates* and *alcohol*.\
 **gini** - this is the value for the gini impurity. It represents the purity of a node. It is the cost function we for determining how good our splits are. A gini coefficient of 0 represents the pure node. Other cost functions include Chi-square,information gain and using the reduction in variance. The gini coefficient is calculated as\
+
+$$ G = \sum_{i=1}^C p(i) * (1 - p(i)) $$
+
+For our root node, G is calculated as
 ```
-Gini coefficient = 1 - ( (10/1599)**2 + (53/1599)**2 + (681/1599)**2 + (638/1599)**2 + (199/1599)**2+ (18/1599)**2)
+G = 1 - ( (10/1599)**2 + (53/1599)**2 + (681/1599)**2 + (638/1599)**2 + (199/1599)**2+ (18/1599)**2)
 ```
 **samples** - This is the number of training instances in the node. From the image, the sample value at the root node is the entire dataset(1599). Also the sum of the sample values of the children node should be equal to that of the parent node. Eg. 842 + 757 = 1599.\
 **value** - How many training instances of each class is in that node. This values should sum up the samples value of that node.\
@@ -107,3 +111,6 @@ Gini coefficient = 1 - ( (10/1599)**2 + (53/1599)**2 + (681/1599)**2 + (638/1599
 
 ## The decision making Process ##
 For a classification problem like the wine problem, the algorithm splits on all possible features. It then searches for a pair of (feature,threshold) split that gives the purest(lowest gini coefficient) children nodes. In our case, the best split was on (alcohol, 10.45). The children node also undergo the same split process until we arrive at a pure node or a near pure node. When a new feature is fed to the decision tree, it traces the path it created and arrives at a leaf node. The target class in the leaf node becomes our predicted class. 
+
+## Conclusion ##
+In this post, we explored how the decision tree algorithm works. We trained on a wine quality dataset and explored the various components of our decision tree. While the training accuracy of decision tree is poor, it can help us understand our data better. We can identify the most predictive features and reason through how our models arrives at a final prediction. With decision trees out of the way, we can now focus on other tree based algorithms. In our next post, we will take a deep dive into random forests. We will explore the theory behind it as well as how to apply random forests in practical situations.
