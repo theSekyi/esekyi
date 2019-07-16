@@ -17,7 +17,7 @@ Decision trees form the foundations of powerful algorithms such as random forest
 
 ## Cultivating a Decision Tree ##
 
-We’ll use a the Red wine quality dataset from  [kaggle](https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009). Our task is to predict the quality of red wine based on a set 9 independent variables. Let's import the necessary libraries and our dataset.
+We’ll use a the Red wine quality dataset from  [kaggle](https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009). Our task is to predict the quality of red wine based on a set of 9 independent variables. Let's import the necessary libraries and our dataset.
 ```
 import pandas as pd
 import numpy as np
