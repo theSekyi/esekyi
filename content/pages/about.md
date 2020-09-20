@@ -3,10 +3,9 @@ title: "About me"
 template: "page"
 ---
 
-I'm a consultant at the Grailabs. Previously, I studied Data Science at DSI. I am interested in Reliability, Secure and Private AI, Natural Language Processing and Optimization techniques. I love wine.
+I am a postgraduate student at [University of Cape Town](https://www.uct.ac.za/) and [AIMS SA](https://aims.ac.za/) doing research in 
+Self-Supervised learning for Evolving the Feature Space in Computer Vision. Previously, 
+I worked as a Machine Learning Engineer at [Data Revenue](https://www.datarevenue.com/), a data Scientist at [Grailabs](http://www.grailabs.com/) and a Software
+Engineer at [Inflexion Capital](http://inflexioncap.com/).
 
-![Early morning on the wine farm.](/media/about-image.jpg)
 
-*Jedi on the wine farm with colleagues from Grailabs.*
-
-I'm available on any of my social media platforms. You can also reach me on emmanuelkwamesekyi@gmail.com
