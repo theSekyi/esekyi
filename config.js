@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  url: 'https://www.esekyi.com/',
+  url: `https://www.esekyi.com/`,
   title: 'Emmanuel Sekyi',
   subtitle: 'Machine learnist, Software Practitioner(web), Wine Evangelist',
   copyright: '© All rights reserved.',
