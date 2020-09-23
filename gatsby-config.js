@@ -136,7 +136,7 @@ module.exports = {
           {
             site {
               siteMetadata {
-                siteUrl: url
+                siteUrl: `https://www.esekyi.com/`
               }
             }
             allSitePage(
