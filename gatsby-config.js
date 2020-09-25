@@ -5,7 +5,7 @@ const postCssPlugins = require('./postcss-config.js');
 
 module.exports = {
     siteMetadata: {
-        url: siteConfig.url,
+        url: 'https://www.esekyi.com/',
         title: siteConfig.title,
         subtitle: siteConfig.subtitle,
         copyright: siteConfig.copyright,
@@ -136,7 +136,7 @@ module.exports = {
           {
             site {
               siteMetadata {
-                siteUrl: `https://www.esekyi.com/`
+               siteUrl: url
               }
             }
             allSitePage(
