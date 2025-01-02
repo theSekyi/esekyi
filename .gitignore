@@ -1,8 +1,19 @@
-node_modules/
-.cache/
-public/
-npm-debug.log
-.eslintcache
-.gatsby-context.js
-.idea
-gatsby-starter-lumen.iml
+# Hugo default output directory
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# Temporary files
+.DS_Store
+
+cr.sh
+
+copied/
+
+.hugo_build.lock
