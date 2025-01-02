@@ -1,0 +1,9 @@
+name = "Hugo Distill"
+license = "MIT"
+description = "A distill.pub theme for Hugo"
+homepage = "https://github.com/yourusername/hugo-distill"
+min_version = "0.80.0"
+
+[author]
+  name = "Emmanuel Sekyi"
+  homepage = "https://www.esekyi.com"
