@@ -3,6 +3,12 @@ languageCode = 'en-us'
 title = 'EKS'
 
 theme = "hugo-distill"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
   description = "Your site description"
   author = "Emmanuel Sekyi"

@@ -1,0 +1,11 @@
+[module]
+  [module.hugoVersion]
+    min = "0.80.0"
+    extended = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github"
