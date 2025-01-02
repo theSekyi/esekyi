@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "hugo"
+  command = "hugo --config hugo.toml"
 
 [build.environment]
   HUGO_VERSION = "0.140.2"
@@ -10,7 +10,7 @@
   HUGO_ENABLEGITINFO = "true"
 
 [context.deploy-preview]
-  command = "hugo -b $DEPLOY_PRIME_URL"
+  command = "hugo --config hugo.toml -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy]
-  command = "hugo -b $DEPLOY_PRIME_URL"
+  command = "hugo --config hugo.toml -b $DEPLOY_PRIME_URL"
