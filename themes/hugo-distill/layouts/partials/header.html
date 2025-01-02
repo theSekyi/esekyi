@@ -1,0 +1,125 @@
+<!-- layouts/partials/header.html -->
+<nav class="site-nav">
+    <div class="nav-container">
+        <!-- Site title/logo on the left -->
+        <div class="nav-left">
+            <a href="/" class="site-title">
+                <img src="/images/profile.png" alt="{{ .Site.Title }}" class="profile-image">
+                <span class="site-title-text">{{ .Site.Title }}</span>
+            </a>
+        </div>
+
+        <!-- Navigation links on the right -->
+        <div class="nav-right">
+            <a href="/posts/" class="nav-link {{ if eq .Section "posts" }}active{{ end }}">Posts</a>
+            <a href="/about/" class="nav-link {{ if eq .Section "about" }}active{{ end }}">About</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .site-nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+        max-width: var(--main-width);
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 var(--gutter);
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-right {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .site-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+    }
+
+    .profile-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        transition: border-color 0.2s ease;
+    }
+
+    .site-title:hover .profile-image {
+        border-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .site-title-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.9);
+    }
+
+    /* Reset any text decoration */
+    .site-nav a {
+        text-decoration: none !important;
+    }
+
+    .nav-link {
+        position: relative;
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 1rem;
+        padding: 0.5rem 0;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s ease;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: transparent;
+        transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover::after {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-link.active::after {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+        .site-title-text {
+            display: none;
+        }
+
+        .site-title {
+            gap: 0;
+        }
+
+        .profile-image {
+            width: 35px;
+            height: 35px;
+        }
+    }
+</style>

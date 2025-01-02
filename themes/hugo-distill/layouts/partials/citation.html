@@ -1,0 +1,15 @@
+{{ with .Params.bibliography }}
+<div class="citations-list">
+  {{ range . }}
+  <div class="citation" id="cite-{{ .id }}">
+    <p>
+      <strong>{{ .author }}</strong>
+      ({{ .year }}). {{ .title }}.
+      <em>{{ .journal }}</em>
+      {{ with .volume }}{{ . }}{{ end }} {{ with .number }}({{ . }}){{ end }} {{
+      with .pages }}, {{ . }}{{ end }}
+    </p>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,49 @@
+<!-- layouts/shortcodes/sidenote.html -->
+<span class="sidenote-wrapper">
+  <span class="sidenote-number"></span>
+  <span class="sidenote"> {{ .Inner }} </span>
+</span>
+
+<!-- Add this to the end of your head.html partial -->
+<style>
+  .sidenote-wrapper {
+    position: relative;
+    display: inline;
+  }
+
+  .sidenote-number {
+    counter-increment: sidenote-counter;
+  }
+
+  .sidenote-number::after {
+    content: counter(sidenote-counter);
+    vertical-align: super;
+    font-size: 0.7em;
+    color: #666;
+    margin-left: 2px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1000px) {
+    .sidenote {
+      display: none;
+    }
+
+    .sidenote-number:hover + .sidenote {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 1em;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      width: 250px;
+    }
+  }
+  /* Only keep this counter reset */
+  body {
+    counter-reset: sidenote-counter;
+  }
+</style>

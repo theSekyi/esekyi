@@ -1,0 +1,234 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+  {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{
+  end }}
+</title>
+
+<!-- Libre Franklin font -->
+<style>
+  @font-face {
+    font-family: 'Libre Franklin';
+    src: url('/fonts/libre-franklin/LibreFranklin-Regular.woff2')
+        format('woff2'),
+      url('/fonts/libre-franklin/LibreFranklin-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Libre Franklin';
+    src: url('/fonts/libre-franklin/LibreFranklin-Bold.woff2') format('woff2'),
+      url('/fonts/libre-franklin/LibreFranklin-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
+
+<!-- Main styles -->
+<style>
+  :root {
+    --main-width: 648px;
+    --side-width: 200px;
+    --gutter: 30px;
+    --font-primary: 'Libre Franklin', -apple-system, BlinkMacSystemFont,
+      sans-serif;
+  }
+
+  body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0;
+    padding: 0;
+    counter-reset: sidenote-counter;
+  }
+
+  .container {
+    max-width: calc(
+      var(--main-width) + 2 * var(--side-width) + 2 * var(--gutter)
+    );
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .distill-article {
+    position: relative;
+    width: var(--main-width);
+    margin: 0 auto;
+  }
+
+  /* Sidenote styles */
+  .sidenote {
+    float: right;
+    clear: right;
+    margin-right: calc(-1 * (var(--side-width) + var(--gutter)));
+    width: var(--side-width);
+    font-size: 0.8em;
+    line-height: 1.4;
+    vertical-align: baseline;
+    position: relative;
+  }
+
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  /* Article List and Card Styles */
+  .article-list {
+    max-width: var(--main-width);
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  .articles-collection {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .article-card {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .article-card:last-child {
+    border-bottom: none;
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-primary);
+  }
+
+  .article-meta time {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.9rem;
+  }
+
+  .article-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .article-title a {
+    color: rgba(0, 0, 0, 0.9);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .article-title a:hover {
+    color: #0366d6;
+  }
+
+  .article-authors {
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .article-abstract {
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
+
+  /* Article Tags and Status */
+  .article-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .peer-reviewed {
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .draft {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+  }
+
+  .draft-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1rem;
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    width: 100px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+    background: #856404;
+    transition: width 0.3s ease;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .article-card {
+      grid-template-columns: 1fr;
+    }
+
+    .article-thumbnail {
+      width: 100%;
+      height: 200px;
+      order: -1;
+    }
+
+    .article-title {
+      font-size: 1.5rem;
+    }
+
+    .draft-info {
+      flex-wrap: wrap;
+      margin-left: 0;
+      margin-top: 0.5rem;
+    }
+  }
+</style>
+
+<!-- KaTeX for math rendering -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+/>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+></script>

@@ -1,0 +1,13 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'EKS'
+
+theme = "hugo-distill"
+[params]
+  description = "Your site description"
+  author = "Your Name"
+
+ [params.social]
+    twitter = "thesekyi"           # Just the username, without full URL
+    linkedin = "in/thesekyi"       # Include "in/" but not the full URL
+    github = "theSekyi"            # Just the username, without full URL
