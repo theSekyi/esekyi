@@ -33,7 +33,7 @@
 </div>
 {{ end }}
 
-<style>
+<!-- <style>
     .article-header {
         margin-bottom: 2rem;
         padding-bottom: 1rem;
@@ -79,5 +79,157 @@
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
     }
+</style> -->
+
+<style>
+    .article-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .article-header h1 {
+        font-size: 2.5rem;
+        color: rgba(0, 0, 0, 0.9);
+        margin-bottom: 1rem;
+    }
+
+    .byline {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 0.9rem;
+    }
+
+    .authors {
+        display: flex;
+        align-items: center;
+    }
+
+    .authors::before {
+        content: "•";
+        margin-right: 1rem;
+    }
+
+    .article-content {
+        margin-top: 2rem;
+        font-family: var(--font-primary);
+        line-height: 1.7;
+        color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    /* Make images responsive */
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 2rem auto;
+    }
+
+    /* Handle tables */
+    .article-content table {
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+        border-collapse: collapse;
+        margin: 2rem 0;
+    }
+
+    .article-content table th,
+    .article-content table td {
+        padding: 0.75rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Make code blocks responsive */
+    .article-content pre {
+        max-width: 100%;
+        overflow-x: auto;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+        margin: 1.5rem 0;
+    }
+
+    .article-content code {
+        font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+        font-size: 0.9em;
+        padding: 0.2em 0.4em;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 3px;
+    }
+
+    .article-content pre code {
+        background: none;
+        padding: 0;
+    }
+
+    /* Math content */
+    .katex-display {
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
+        padding: 0.5rem 0;
+        margin: 1.5rem 0;
+    }
+
+    /* Citations section */
+    .citations {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .citations h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .article-header h1 {
+            font-size: 2rem;
+        }
+
+        .byline {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .authors::before {
+            margin-right: 0.5rem;
+        }
+
+        .article-content {
+            font-size: 0.95rem;
+        }
+
+        .citations {
+            margin-top: 3rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .article-header h1 {
+            font-size: 1.75rem;
+        }
+
+        .byline {
+            font-size: 0.85rem;
+        }
+
+        .article-content pre {
+            padding: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .citations h2 {
+            font-size: 1.25rem;
+        }
+    }
 </style>
+
 {{ end }}

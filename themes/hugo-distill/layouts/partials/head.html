@@ -1,12 +1,40 @@
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+/>
+<meta name="theme-color" content="#ffffff" />
+
 <title>
   {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{
   end }}
 </title>
+
 <!-- Favicon -->
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+<!-- Smooth scrolling -->
+<style>
+  html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Improved font rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+</style>
 
 <!-- Libre Franklin font -->
 <style>
@@ -33,29 +61,34 @@
 <!-- Main styles -->
 <style>
   :root {
-    --main-width: 850px; /* Increased from 648px */
-    --side-width: 250px; /* Increased from 200px */
-    --gutter: 40px; /* Increased from 30px */
+    --main-width: min(850px, 95vw);
+    --side-width: min(250px, 25vw);
+    --gutter: clamp(16px, 4vw, 40px);
+    --nav-height: clamp(3rem, 4vw, 4rem);
     --font-primary: 'Libre Franklin', -apple-system, BlinkMacSystemFont,
       sans-serif;
   }
 
+  html {
+    font-size: clamp(14px, 1vw + 8px, 18px);
+  }
+
   body {
     font-family: var(--font-primary);
-    line-height: 1.7; /* Increased from 1.6 */
+    line-height: 1.7;
     color: rgba(0, 0, 0, 0.8);
     margin: 0;
     padding: 0;
     counter-reset: sidenote-counter;
-    font-size: 16px; /* Added explicit font size */
+    font-size: 16px;
   }
 
   .container {
-    max-width: calc(
-      var(--main-width) + 2 * var(--side-width) + 2 * var(--gutter)
-    );
+    width: 100%;
+    max-width: calc(var(--main-width) + 2 * var(--gutter));
     margin: 0 auto;
     padding: 0 var(--gutter);
+    overflow-x: hidden;
   }
 
   .distill-article {
