@@ -3,7 +3,7 @@ title: 'Understanding Neural Networks'
 date: 2025-01-02
 authors: ['Emmanuel Sekyi']
 peer_reviewed: false
-draft: true
+draft: false
 topics: ['Topic 1', 'Topic 2']
 abstract: |
   A detailed exploration of neural network architectures and their applications.
