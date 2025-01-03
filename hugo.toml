@@ -10,7 +10,7 @@ theme = "hugo-distill"
       unsafe = true
 
 [params]
-  description = "Your site description"
+  description = "Emmanuel Sekyi Blog"
   author = "Emmanuel Sekyi"
 
 [params.social]
