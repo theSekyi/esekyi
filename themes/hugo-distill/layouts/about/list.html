@@ -1,0 +1,103 @@
+{{ define "main" }}
+<div class="article-list">
+  <div class="articles-collection">{{ .Content }}</div>
+</div>
+
+<style>
+  /* Reset browser defaults first */
+  .articles-collection h2,
+  .articles-collection p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+  }
+
+  .article-list {
+    max-width: var(--main-width);
+    margin: 0 auto;
+    padding-top: 0.25rem;
+    padding-bottom: 2rem;
+  }
+
+  .articles-collection {
+    position: relative;
+    max-width: calc(var(--main-width) + 7rem);
+    margin: 0 auto;
+  }
+
+  /* Intro paragraph */
+  .articles-collection > p:first-of-type {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Headings */
+  .articles-collection h2 {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.9);
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .articles-collection h3 {
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.9);
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Lists */
+  .articles-collection ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .articles-collection ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.25rem;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .articles-collection ul li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  /* General paragraphs */
+  .articles-collection p {
+    margin-bottom: 0.5rem;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Links */
+  .articles-collection a {
+    color: #0366d6;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .articles-collection a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  /* CV Button */
+  .cv-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .cv-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+  }
+</style>
+{{ end }}
