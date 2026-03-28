@@ -27,10 +27,40 @@ _Abstract: Anomaly detection algorithms are typically applied to static, unchang
 
 ## Projects
 
-### AHUNT
-
-An active learning framework that combines deep learning with dynamic feature space adaptation for improved anomaly detection. The system demonstrates superior performance on various datasets including MNIST, CIFAR10, and astronomical data. <br>
-[Paper](https://arxiv.org/abs/2210.16334) · [GitHub](#)
+<ol class="project-list">
+  <li class="project-item">
+    <h3 class="project-title">
+      <a class="project-name" href="https://github.com/constellaXion/constellaXion-cli" target="_blank" rel="noopener noreferrer">
+        <img
+          src="https://raw.githubusercontent.com/constellaXion/constellaXion-cli/main/assets/icon_light_bg.svg"
+          alt="constellaXion CLI logo"
+          class="project-logo-inline"
+        >
+        <span>constellaXion CLI</span>
+      </a>
+    </h3>
+    <p>A CLI for automated LLM training, deployment, and serving workflows on private cloud infrastructure. The project focuses on making it faster to configure open source language models, fine-tune them, deploy them, and serve them through a simple command-line interface.</p>
+    <p class="project-links"><a href="https://github.com/constellaXion/constellaXion-cli">GitHub</a> · <a href="https://constellaxion.ai">Website</a></p>
+  </li>
+  <li class="project-item">
+    <h3 class="project-title">
+      <a class="project-name" href="https://www.oncovectra.com/" target="_blank" rel="noopener noreferrer">
+        <span>OncoVectra</span>
+      </a>
+    </h3>
+    <p>A software initiative focused on tools for cancer research, spanning data collection platforms, research pipelines, and integrated environments at the intersection of oncology and artificial intelligence.</p>
+    <p class="project-links"><a href="https://www.oncovectra.com/">Website</a></p>
+  </li>
+  <li class="project-item">
+    <h3 class="project-title">
+      <a class="project-name" href="https://github.com/theSekyi/mirrord" target="_blank" rel="noopener noreferrer">
+        <span>mirrord</span>
+      </a>
+    </h3>
+    <p>A plugin for cloning public websites into real multi-page implementations with preserved navigation, shared layout structure, and pixel-accurate styling.</p>
+    <p class="project-links"><a href="https://github.com/theSekyi/mirrord">GitHub</a></p>
+  </li>
+</ol>
 
 ## Contact
 
