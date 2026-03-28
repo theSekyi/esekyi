@@ -21,65 +21,28 @@
 </html>
 
 <style>
-  /* Reset box sizing */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  /* Basic reset for html and body */
   html,
   body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    min-height: 100%;
   }
 
-  /* Grid-based page layout */
   .page-layout {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      'header'
-      'main'
-      'footer';
   }
 
-  /* Header styles */
   .main-header {
-    grid-area: header;
-    height: var(--nav-height);
-    background-color: #fff;
-    display: flex;
-    align-items: stretch;
+    background: var(--brand-ink);
   }
 
-  .main-header nav {
-    width: 100%;
-  }
-
-  /* Main content area */
   .site-main {
-    grid-area: main;
     width: 100%;
-    padding: 2rem 0;
-    background-color: #fff;
+    padding: 0 0 4rem;
+    background: #fff;
   }
 
-  /* Container for content width constraint */
-  .container {
-    max-width: calc(var(--main-width) + 2 * var(--gutter));
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-  }
-
-  /* Footer styles */
   .site-footer {
-    grid-area: footer;
-    height: var(--nav-height);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background: var(--brand-ink);
   }
 </style>

@@ -1,103 +1,146 @@
 {{ define "main" }}
-<div class="article-list">
-  <div class="articles-collection">{{ .Content }}</div>
-</div>
+<article class="about-page">
+  <header class="about-hero">
+    <div class="about-hero-inner">
+      <h1>{{ .Title }}</h1>
+    </div>
+  </header>
+
+  <div class="about-body">
+    <div class="about-content">
+      {{ .Content }}
+    </div>
+  </div>
+</article>
 
 <style>
-  /* Reset browser defaults first */
-  .articles-collection h2,
-  .articles-collection p {
-    margin-block-start: 0;
-    margin-block-end: 0;
+  .about-page {
+    padding-top: 0.5rem;
+  }
+
+  .about-hero {
+    padding: 2.2rem 0 1.2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .about-hero-inner,
+  .about-body {
+    width: min(var(--page-width), 100%);
+    margin: 0 auto;
+  }
+
+  .about-hero h1 {
     margin: 0;
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: rgba(0, 0, 0, 0.96);
   }
 
-  .article-list {
-    max-width: var(--main-width);
-    margin: 0 auto;
-    padding-top: 0.25rem;
-    padding-bottom: 2rem;
+  .about-body {
+    padding-top: 1.75rem;
   }
 
-  .articles-collection {
-    position: relative;
-    max-width: calc(var(--main-width) + 7rem);
-    margin: 0 auto;
+  .about-content {
+    max-width: 720px;
   }
 
-  /* Intro paragraph */
-  .articles-collection > p:first-of-type {
-    margin-bottom: 1.5rem;
+  .about-content > :first-child {
+    margin-top: 0;
   }
 
-  /* Headings */
-  .articles-collection h2 {
-    font-size: 1.5rem;
+  .about-content > p:first-of-type {
+    font-size: 20px;
+    line-height: 1.65;
+    color: rgba(0, 0, 0, 0.72);
+    margin-bottom: 2rem;
+  }
+
+  .about-content h2 {
+    margin: 2.4rem 0 0.75rem;
+    font-size: 32px;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: rgba(0, 0, 0, 0.9);
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
   }
 
-  .articles-collection h3 {
-    font-size: 1.2rem;
-    color: rgba(0, 0, 0, 0.9);
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
+  .about-content h3 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 22px;
+    line-height: 1.2;
+    color: rgba(0, 0, 0, 0.85);
   }
 
-  /* Lists */
-  .articles-collection ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 0.25rem;
-    margin-bottom: 1rem;
-  }
-
-  .articles-collection ul li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.25rem;
+  .about-content p {
+    margin: 0 0 1rem;
+    font-size: 17px;
+    line-height: 1.75;
     color: rgba(0, 0, 0, 0.8);
   }
 
-  .articles-collection ul li:before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: rgba(0, 0, 0, 0.6);
+  .about-content ul {
+    margin: 0.5rem 0 1.5rem 1.2rem;
+    padding: 0;
   }
 
-  /* General paragraphs */
-  .articles-collection p {
-    margin-bottom: 0.5rem;
+  .about-content li {
+    margin: 0 0 0.45rem;
+    padding-left: 0.2rem;
+    font-size: 17px;
+    line-height: 1.7;
     color: rgba(0, 0, 0, 0.8);
   }
 
-  /* Links */
-  .articles-collection a {
-    color: #0366d6;
+  .about-content strong {
+    color: rgba(0, 0, 0, 0.92);
+  }
+
+  .about-content em {
+    color: rgba(0, 0, 0, 0.68);
+  }
+
+  .about-content a {
+    color: #004276;
     text-decoration: none;
-    transition: color 0.2s ease;
   }
 
-  .articles-collection a:hover {
-    color: #0056b3;
+  .about-content a:hover {
     text-decoration: underline;
   }
 
-  /* CV Button */
-  .cv-button {
+  .about-content br + a,
+  .about-content br + em,
+  .about-content br + strong {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-    margin-top: 0.5rem;
-    transition: background-color 0.2s ease;
+    margin-top: 0.2rem;
   }
 
-  .cv-button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    text-decoration: none;
+  @media (max-width: 767px) {
+    .about-page {
+      padding-top: 0;
+    }
+
+    .about-hero {
+      padding: 1.6rem 0 1rem;
+    }
+
+    .about-content > p:first-of-type {
+      font-size: 18px;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content h2 {
+      font-size: 26px;
+    }
+
+    .about-content h3 {
+      font-size: 20px;
+    }
+
+    .about-content p,
+    .about-content li {
+      font-size: 16px;
+    }
   }
 </style>
 {{ end }}

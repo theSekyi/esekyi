@@ -1,188 +1,384 @@
 {{ define "main" }}
-<header class="article-header">
-    <h1>{{ .Title }}</h1>
-    <div class="byline">
-        <!-- Date -->
-        <time datetime="{{ .Date.Format "2006-01-02" }}">
-            {{ .Date.Format "January 2, 2006" }}
-        </time>
-        
-        <!-- Authors -->
-        {{ with .Params.authors }}
-            <div class="authors">
-                {{ delimit . ", " }}
-            </div>
-        {{ else }}
-            {{ with .Params.author }}
-            <div class="authors">
-                {{ . }}
-            </div>
-            {{ end }}
-        {{ end }}
-    </div>
-</header>
-
-<div class="article-content">
-    {{ .Content }}
-</div>
-
-{{ if .Params.bibliography }}
-<div class="citations">
-    <h2>References</h2>
-    {{ partial "citation.html" . }}
-</div>
+{{ $hasTOC := gt (len (findRE `(?m)^##+\s` .RawContent)) 0 }}
+{{ $authors := .Params.authors }}
+{{ if not $authors }}
+  {{ with .Params.author }}
+    {{ $authors = slice . }}
+  {{ else }}
+    {{ with .Site.Params.author }}
+      {{ $authors = slice . }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
+<article class="article-page">
+  <header class="article-hero">
+    <div class="article-hero-inner">
+      <div class="article-hero-copy">
+        <h1>{{ .Title }}</h1>
+
+        {{ with .Params.abstract }}
+        <p class="article-dek">{{ . | plainify }}</p>
+        {{ end }}
+      </div>
+    </div>
+  </header>
+
+  <section class="article-meta-band">
+    <div class="article-meta-grid">
+      {{ with $authors }}
+      <div class="meta-group">
+        <div class="meta-label">Authors</div>
+        <div class="meta-value meta-list">
+          {{ range . }}
+          <div>{{ . }}</div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ with .Params.topics }}
+      <div class="meta-group">
+        <div class="meta-label">Topics</div>
+        <div class="meta-value meta-list">
+          {{ range . }}
+          <div>{{ . }}</div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      <div class="meta-group">
+        <div class="meta-label">Published</div>
+        <div class="meta-value">{{ .Date.Format "January 2, 2006" }}</div>
+      </div>
+
+      {{ if .Params.peer_reviewed }}
+      <div class="meta-group">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">Peer-reviewed</div>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <div class="article-body-shell{{ if not $hasTOC }} no-toc{{ end }}">
+    {{ if $hasTOC }}
+    <aside class="article-toc">
+      <div class="toc-sticky">
+        <h2>Contents</h2>
+        {{ .TableOfContents }}
+      </div>
+    </aside>
+    {{ end }}
+
+    <div class="article-main-column">
+      <div class="article-content">
+        {{ .Content }}
+      </div>
+
+      {{ if .Params.bibliography }}
+      <section class="citations">
+        <h2>References</h2>
+        {{ partial "citation.html" . }}
+      </section>
+      {{ end }}
+    </div>
+  </div>
+</article>
 
 <style>
-    .article-header {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
+  .article-page {
+    padding-top: 0.5rem;
+  }
+
+  .article-hero {
+    padding: 2.6rem 0 2.2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .article-hero-inner,
+  .article-meta-grid,
+  .article-body-shell {
+    width: min(var(--page-width), 100%);
+    margin: 0 auto;
+  }
+
+  .article-hero-copy {
+    max-width: 560px;
+    margin-left: 0;
+  }
+
+  .article-hero h1 {
+    margin: 0;
+    font-size: clamp(2.45rem, 5vw, 4rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+    color: rgba(0, 0, 0, 0.97);
+  }
+
+  .article-dek {
+    margin: 1rem 0 0;
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.75);
+    max-width: 48rem;
+  }
+
+  .article-meta-band {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .article-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    padding: 1.35rem 0 1.25rem;
+  }
+
+  .meta-group {
+    min-width: 0;
+  }
+
+  .meta-label {
+    margin-bottom: 0.45rem;
+    font-size: 11px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: 600;
+  }
+
+  .meta-value {
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(0, 0, 0, 0.74);
+    font-weight: 600;
+  }
+
+  .meta-list > div + div {
+    margin-top: 0.15rem;
+  }
+
+  .article-body-shell {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 720px);
+    gap: 2.75rem;
+    align-items: start;
+    padding-top: 1.6rem;
+  }
+
+  .article-body-shell.no-toc {
+    grid-template-columns: minmax(0, 720px);
+    justify-content: start;
+  }
+
+  .article-toc {
+    min-width: 0;
+  }
+
+  .toc-sticky {
+    position: sticky;
+    top: 1.5rem;
+    padding-right: 1.5rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .toc-sticky h2 {
+    margin: 0 0 1rem;
+    font-size: 18px;
+    line-height: 1.2;
+    color: rgba(0, 0, 0, 0.62);
+  }
+
+  .article-toc nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-toc nav li {
+    margin: 0 0 0.5rem;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .article-toc nav ul ul {
+    margin-top: 0.4rem;
+    padding-left: 0.75rem;
+  }
+
+  .article-toc a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.62);
+  }
+
+  .article-toc a:hover {
+    color: #004276;
+  }
+
+  .article-main-column {
+    min-width: 0;
+  }
+
+  .article-content {
+    color: rgba(0, 0, 0, 0.8);
+    overflow-wrap: break-word;
+  }
+
+  .article-content > :first-child {
+    margin-top: 0;
+  }
+
+  .article-content p,
+  .article-content ul,
+  .article-content ol {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .article-content p.lead,
+  .article-content blockquote {
+    font-size: 19px;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .article-content h2 {
+    margin: 2.8rem 0 1rem;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .article-content h3 {
+    margin: 2rem 0 0.8rem;
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  .article-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+  }
+
+  .article-content table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-collapse: collapse;
+  }
+
+  .article-content table th,
+  .article-content table td {
+    padding: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .article-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 1.75rem 0;
+    padding: 1rem 1.15rem;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+  }
+
+  .article-content code {
+    font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9em;
+  }
+
+  .article-content :not(pre) > code {
+    padding: 0.15em 0.35em;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 3px;
+  }
+
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    padding: 0.5rem 0;
+    margin: 1.5rem 0;
+  }
+
+  .citations {
+    margin-top: 3rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .citations h2 {
+    margin: 0 0 1rem;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 1080px) {
+    .article-hero-copy {
+      max-width: 44rem;
     }
 
-    .article-header h1 {
-        font-size: 2.5rem;
-        color: rgba(0, 0, 0, 0.9);
-        margin-bottom: 1rem;
+    .article-meta-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
     }
 
-    .byline {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 0.9rem;
+    .article-body-shell {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
 
-    .authors {
-        display: flex;
-        align-items: center;
+    .article-body-shell.no-toc {
+      justify-content: stretch;
     }
 
-    .authors::before {
-        content: "•";
-        margin-right: 1rem;
+    .toc-sticky {
+      position: static;
+      padding-right: 0;
+      border-right: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .article-page {
+      padding-top: 0;
     }
 
-    .article-content {
-        margin-top: 2rem;
-        font-family: var(--font-primary);
-        line-height: 1.7;
-        color: rgba(0, 0, 0, 0.8);
-        width: 100%;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
+    .article-hero {
+      padding: 1.8rem 0 1.6rem;
     }
 
-    /* Make images responsive */
-    .article-content img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 2rem auto;
+    .article-dek {
+      font-size: 17px;
     }
 
-    /* Handle tables */
-    .article-content table {
-        width: 100%;
-        overflow-x: auto;
-        display: block;
-        border-collapse: collapse;
-        margin: 2rem 0;
+    .article-meta-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1.1rem 0;
     }
 
-    .article-content table th,
-    .article-content table td {
-        padding: 0.75rem;
-        border: 1px solid rgba(0, 0, 0, 0.1);
+    .article-content h2 {
+      font-size: 24px;
     }
 
-    /* Make code blocks responsive */
-    .article-content pre {
-        max-width: 100%;
-        overflow-x: auto;
-        padding: 1rem;
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 4px;
-        margin: 1.5rem 0;
-    }
-
-    .article-content code {
-        font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
-        font-size: 0.9em;
-        padding: 0.2em 0.4em;
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 3px;
-    }
-
-    .article-content pre code {
-        background: none;
-        padding: 0;
-    }
-
-    /* Math content */
-    .katex-display {
-        overflow-x: auto;
-        overflow-y: hidden;
-        max-width: 100%;
-        padding: 0.5rem 0;
-        margin: 1.5rem 0;
-    }
-
-    /* Citations section */
-    .citations {
-        margin-top: 4rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    .article-content h3 {
+      font-size: 19px;
     }
 
     .citations h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+      font-size: 26px;
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .article-header h1 {
-            font-size: 2rem;
-        }
-
-        .byline {
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .authors::before {
-            margin-right: 0.5rem;
-        }
-
-        .article-content {
-            font-size: 0.95rem;
-        }
-
-        .citations {
-            margin-top: 3rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .article-header h1 {
-            font-size: 1.75rem;
-        }
-
-        .byline {
-            font-size: 0.85rem;
-        }
-
-        .article-content pre {
-            padding: 0.75rem;
-            font-size: 0.85rem;
-        }
-
-        .citations h2 {
-            font-size: 1.25rem;
-        }
-    }
+  }
 </style>
-
 {{ end }}
