@@ -83,6 +83,31 @@
         {{ partial "citation.html" . }}
       </section>
       {{ end }}
+
+      {{ with .Site.Params.giscus }}
+      {{ if .enabled }}
+      <section class="article-comments">
+        <h2>Discussion</h2>
+        <script
+          src="https://giscus.app/client.js"
+          data-repo="{{ .repo }}"
+          data-repo-id="{{ .repoId }}"
+          data-category="{{ .category }}"
+          data-category-id="{{ .categoryId }}"
+          data-mapping="{{ .mapping }}"
+          data-strict="{{ .strict }}"
+          data-reactions-enabled="{{ .reactionsEnabled }}"
+          data-emit-metadata="{{ .emitMetadata }}"
+          data-input-position="{{ .inputPosition }}"
+          data-theme="{{ .theme }}"
+          data-lang="{{ .lang }}"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async
+        ></script>
+      </section>
+      {{ end }}
+      {{ end }}
     </div>
   </div>
 </article>
@@ -315,6 +340,19 @@
   }
 
   .citations h2 {
+    margin: 0 0 1rem;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .article-comments {
+    margin-top: 3rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .article-comments h2 {
     margin: 0 0 1rem;
     font-size: 30px;
     line-height: 1.1;

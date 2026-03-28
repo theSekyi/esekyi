@@ -13,6 +13,20 @@ theme = "hugo-distill"
   description = "Emmanuel Sekyi Blog"
   author = "Emmanuel Sekyi"
 
+[params.giscus]
+  enabled = true
+  repo = "theSekyi/esekyi"
+  repoId = "MDEwOlJlcG9zaXRvcnkxODQ5NDA0Mjc="
+  category = "General"
+  categoryId = "DIC_kwDOCwX3i84C5fVZ"
+  mapping = "pathname"
+  strict = "0"
+  reactionsEnabled = "1"
+  emitMetadata = "0"
+  inputPosition = "bottom"
+  theme = "light"
+  lang = "en"
+
 [params.social]
   twitter = "thesekyi"
   linkedin = "in/thesekyi"
